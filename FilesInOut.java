@@ -13,22 +13,37 @@ import java.lang.Number;
 public class FilesInOut {
 
     public static void main(String[] args) {
-        // Replace this with statements to set the file name (input) and file name (output).
-        // Initially it will be easier to hardcode suitable file names.
-
-        // Set up a new Scanner to read the input file.
-        // Processing line by line would be sensible here.
-        // Initially, echo the text to System.out to check you are reading correctly.
-        // Then add code to modify the text to the output format.
-
-        // Set up a new PrintWriter to write the output file.
-        // Add suitable code into the above processing (because you need to do this line by line also.
-        // That is, read a line, write a line, loop.
-
-        // Finally, add code to read the filenames as arguments from the command line.
-
-        System.out.println("You need to add your own code to do anything");
-
-    } // main
-
+    	//try and catch for full name file
+		try {
+			//making files
+	        File input = new File ("input.txt");
+	        File output = new File ("output.txt");
+	        //making scanner
+			Scanner scan = new Scanner(input);
+			//making printer
+			PrintWriter print = new PrintWriter(output);
+			System.out.println(args[0]);
+			//while loop so it can read file
+			 while(scan.hasNextLine()) {
+		        	String result = scan.nextLine();
+		        	//capital the line by split
+		        	String[] line = result.split(" +");
+		        	String capital = line[1];
+		        	capital = capital.toUpperCase() + ".";
+		        	line[1] = capital;
+		        	result = String.join(" ", line);
+		        	System.out.println("this is the input file: "+ result);
+		        	//write line in output
+		        	print.write(result);
+		        	System.out.println("this is the output file: " + result);
+		        	}
+			  //closing scanner and printer
+			  scan.close();
+			  print.close();
+			  } catch (FileNotFoundException e) {
+			    System.out.println("Error has occured");
+			e.printStackTrace();
+		}
+    }
+    // main
 } // FilesInOut
